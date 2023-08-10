@@ -1,0 +1,49 @@
+.MainSection {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.LeftSection {
+  width: 50%;
+  height: 97vh;
+  background-color: #03afee25;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LeftSection > img {
+  border-radius: 50%;
+}
+.RightSection {
+  width: 50%;
+  height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.logo {
+  width: 50%;
+}
+
+.logo > img {
+  width: 200px;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.LeftSection > img {
+  width: 70%;
+  height: 70%;
+}
+
+.error-msg {
+  width: 50%;
+  color: red;
+  font-size: small;
+  text-align: right;
+}

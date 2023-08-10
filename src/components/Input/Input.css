@@ -1,0 +1,47 @@
+.text-field {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  /* border: 1px solid red; */
+}
+input {
+  height: 45px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: 2px solid #b4b7bd;
+  background-color: transparent;
+}
+input:focus-visible {
+    border: 2px solid #1eb4f0;
+    outline: 2px;
+}
+
+input:focus,
+input:active {
+  border: 2px solid #1eb4f0;
+  outline: 2px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #b4b7bd;
+  position: relative;
+  top: -50%;
+  left: 15px;
+  width: fit-content;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  position: relative;
+  top: -85%;
+  background-color: white;
+  width: fit-content;
+  color: #1eb4f0;
+  font-size: 14px;
+  font-weight: 400;
+  padding:  0 5px 0 5px;
+}
