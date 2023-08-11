@@ -4,7 +4,7 @@ import Subheader from './../components/SubHeader/Subheader';
 import React, { FC } from 'react';
 
 type EmplayoutProps = {
-  type: 'create' | 'edit';
+  type: 'create' | 'edit' | 'none';
   label: string;
 };
 

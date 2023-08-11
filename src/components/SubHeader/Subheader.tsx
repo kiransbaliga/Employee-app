@@ -4,7 +4,7 @@ import ECButton from '../Edit-Create-Button/ECButton';
 
 type SubHeaderProps = {
   label: string;
-  type: 'edit' | 'create';
+  type: 'edit' | 'create' | 'none';
 };
 const Subheader: FC<SubHeaderProps> = (props) => {
   return (

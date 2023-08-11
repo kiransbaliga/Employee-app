@@ -3,12 +3,12 @@ import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
 type ECButtonProps = {
-  type: 'create' | 'edit';
+  type: 'create' | 'edit' | 'none';
 };
 const ECButton: FC<ECButtonProps> = (props) => {
   return (
     <button className='ecbutton'>
-      <div className='button-parent'>
+      <div className={'button-parent ' + props.type}>
         <div className='icon-subheader'>
           {/* <img src='assets/icons/+.svg' alt='' />
            */}
