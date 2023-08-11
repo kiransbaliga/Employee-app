@@ -1,5 +1,5 @@
 .Subheader {
-  height: 7.5%;
+  height: 8%;
   box-shadow: 0px 3px 6px #00000029;
   width: calc(100% - 360px);
   margin-left: 315px;
@@ -14,4 +14,9 @@
 .heading{
     font-size: large;
     font-weight: 700;
+}
+
+.items{
+  display: flex;
+  gap:30px;
 }

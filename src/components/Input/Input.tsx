@@ -12,7 +12,7 @@ const Input: FC<InputProp> = (props) => {
   return (
     <>
       <div className='text-field'>
-        <input type={props.type} required onChange={props.onChange} />
+        <input type={props.type} required onChange={props.onChange} value={props.value} />
         <label>{props.label}</label>
       </div>
     </>

@@ -1,0 +1,46 @@
+.button-parent {
+  display: flex;
+  align-items: center;
+}
+
+.icon-subheader {
+  position: relative;
+  left: 15px;
+  background-color: #03aeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bolder;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  margin-left: 0;
+  padding-left: 0;
+  border-radius: 50px;
+}
+.icon-subheader > img {
+  position: relative;
+  left: 25%;
+}
+
+.button-box {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: fit-content;
+  background-color: #eaf9ff;
+  height: 52.5px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+.ecbutton {
+  background-color: transparent;
+  border: none;
+  cursor: crosshair;
+}
