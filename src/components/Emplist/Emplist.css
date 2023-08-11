@@ -1,0 +1,35 @@
+.emplist-main {
+  cursor: pointer;
+  height: auto;
+  box-shadow: 0px 3px 6px #00000029;
+  width: calc(100% - 360px);
+  margin-left: 315px;
+  margin-right: 15px;
+
+  border-radius: 5px;
+  display: flex;
+  padding: 0 15px;
+  align-items: center;
+
+  /* justify-content: space-betwe; */
+}
+.emplist-main:hover{
+  background-color: beige;
+}
+
+.emp {
+  width: calc(100% / 9);
+  height: auto;
+  padding: 15px;
+}
+
+.button-action {
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+}
+
+.button-action:hover{
+  cursor: pointer;
+}

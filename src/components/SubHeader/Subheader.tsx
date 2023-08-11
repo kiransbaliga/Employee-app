@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Subheader.css';
 import ECButton from '../Edit-Create-Button/ECButton';
-const Subheader = () => {
+
+type SubHeaderProps = {
+  label: string;
+  type: 'edit' | 'create';
+};
+const Subheader: FC<SubHeaderProps> = (props) => {
   return (
     <div className='Subheader'>
-      <div className='heading'>Employee List</div>
+      <div className='heading'>{props.label}</div>
       <div className='items'>
         {/* <ECButton></ECButton> */}
-        <ECButton></ECButton>
+        <ECButton type={props.type}></ECButton>
       </div>
     </div>
   );

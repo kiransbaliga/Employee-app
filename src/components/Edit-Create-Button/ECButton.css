@@ -42,5 +42,5 @@
 .ecbutton {
   background-color: transparent;
   border: none;
-  cursor: crosshair;
+  cursor: pointer;
 }

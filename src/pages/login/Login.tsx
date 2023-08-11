@@ -14,11 +14,11 @@ const Login = () => {
     <>
       <main className='MainSection'>
         <section className='LeftSection'>
-          <img src='assets/img/Banner.png' alt='banner image' />
+          <img src='/assets/img/Banner.png' alt='banner image' />
         </section>
         <section className='RightSection'>
           <div className='logo'>
-            <img src='assets/img/kv-logo.png' alt='KeyValue | logo' />
+            <img src='/assets/img/kv-logo.png' alt='KeyValue | logo' />
           </div>
           <Input
             value={username}

@@ -6,26 +6,22 @@ main {
   gap: 20px;
   background-color: #fafafa;
 }
-.emp-main {
+.emp-detail {
   height: auto;
   box-shadow: 0px 3px 6px #00000029;
-  width: calc(100% - 360px);
+  width: calc(80% - 360px);
   margin-left: 315px;
   margin-right: 15px;
-  background-color: #eaf9ff;
+  background-color: #FDFDFD;
   border-radius: 5px;
   display: flex;
-  padding: 0 15px;
+  flex-wrap: wrap;
+  padding: 15px;
   align-items: center;
-
-  /* justify-content: space-evenly; */
+  
 }
-.emp {
-  width: calc(100% / 9);
-  /* border: 1px solid red; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.detail {
+  width: 150px;
   height: auto;
-  padding: 10px;
+  padding: 15px;
 }
