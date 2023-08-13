@@ -7,7 +7,7 @@ import { data } from '../../constants/data';
 const Employee = () => {
   return (
     <main>
-      <Emplayout type='edit' label='Employees List'>
+      <Emplayout type='edit' label='Employees List' id={null}>
         <div className='emp-main'>
           <div className='emp'>Emplyee Name</div>
           <div className='emp'>Email</div>

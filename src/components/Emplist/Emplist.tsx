@@ -2,8 +2,9 @@ import Status from '../Status/Status';
 import './Emplist.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button/Button';
 
 type Empprops = {
   id: number;
@@ -18,28 +19,62 @@ type Empprops = {
 };
 const Emplist: FC<Empprops> = (props) => {
   const navigate = useNavigate();
+  const [delbox, setDelbox] = useState(false);
 
   return (
-    <div className='emplist-main' onClick={() => navigate(`/employee/${props.id}`)}>
-      <div className='emp'>{props.name}</div>
-      <div className='emp'>{props.email}</div>
-      <div className='emp'>{props.joindate}</div>
-      <div className='emp'>{props.role}</div>
-      <div className='emp'>
-        <Status isActive={props.status}></Status>
+    <>
+      {delbox ? (
+        <div className='delete-alert'>
+          <div className='card-box'>
+            <div className='text'>Are you sure you want to delete this employee?</div>
+            <div className='buttons'>
+              <Button
+                value='confirm'
+                type='secondary'
+                onClick={() => {
+                  setDelbox(false);
+                }}
+              ></Button>
+              <Button value='cancel' type='primary' onClick={() => setDelbox(false)}></Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+      <div className='emplist-main'>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.name}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.email}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.joindate}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.role}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          <Status isActive={props.status}></Status>
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.experience}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.address}
+        </div>
+        <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
+          {props.departent}
+        </div>
+        <div className='emp'>
+          <button className='button-action'>
+            <FontAwesomeIcon icon={faTrash} size='1x' color='red' onClick={() => setDelbox(true)} />
+          </button>
+          <button className='button-action' onClick={() => navigate(`/employee/${props.id}/edit`)}>
+            <FontAwesomeIcon icon={faEdit} size='1x' color='#03AEEE' />
+          </button>
+        </div>
       </div>
-      <div className='emp'>{props.experience}</div>
-      <div className='emp'>{props.address}</div>
-      <div className='emp'>{props.departent}</div>
-      <div className='emp'>
-        <button className='button-action'>
-          <FontAwesomeIcon icon={faTrash} size='1x' color='red' />
-        </button>
-        <button className='button-action'>
-          <FontAwesomeIcon icon={faEdit} size='1x' color='#03AEEE' />
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

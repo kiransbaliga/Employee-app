@@ -6,6 +6,7 @@ import React, { FC } from 'react';
 type EmplayoutProps = {
   type: 'create' | 'edit' | 'none';
   label: string;
+  id: number | null;
 };
 
 const Emplayout: FC<EmplayoutProps> = (props) => {
@@ -13,7 +14,7 @@ const Emplayout: FC<EmplayoutProps> = (props) => {
     <>
       <Sidebar />
       <Header />
-      <Subheader label={props.label} type={props.type} />
+      <Subheader label={props.label} type={props.type} id={props.id} />
       {props.children}
     </>
   );

@@ -5,6 +5,7 @@ import ECButton from '../Edit-Create-Button/ECButton';
 type SubHeaderProps = {
   label: string;
   type: 'edit' | 'create' | 'none';
+  id: null | number;
 };
 const Subheader: FC<SubHeaderProps> = (props) => {
   return (
@@ -12,7 +13,7 @@ const Subheader: FC<SubHeaderProps> = (props) => {
       <div className='heading'>{props.label}</div>
       <div className='items'>
         {/* <ECButton></ECButton> */}
-        <ECButton type={props.type}></ECButton>
+        <ECButton type={props.type} id={props.id}></ECButton>
       </div>
     </div>
   );

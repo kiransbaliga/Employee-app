@@ -33,3 +33,39 @@
 .button-action:hover{
   cursor: pointer;
 }
+
+.delete-alert{
+  z-index: 12;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(63, 61, 61, 0.356);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-box{
+  width: 350px;
+  height: 200px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+.text{
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.buttons{
+  display: flex;
+  gap:20px;
+  width:100%;
+}

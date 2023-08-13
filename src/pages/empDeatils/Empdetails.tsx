@@ -8,9 +8,10 @@ const Empdetails = () => {
   const { id } = useParams();
   const employee = data.find((e) => Number(id) === e.id);
 
+
   return (
     <main>
-      <Emplayout type='create' label='Employee Deatails'>
+      <Emplayout type='create' label='Employee Details' id={Number(id)}>
         <div className='emp-detail'>
           <Detail type='text' val={employee.name} label='Employee Name'></Detail>
           <Detail type='text' val={employee.joindate} label='Joining Date'></Detail>
