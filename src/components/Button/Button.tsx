@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
 import './Button.css';
-type ButtonProps = {
+export type ButtonProps = {
   value: string;
   type: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 const Button: FC<ButtonProps> = (props) => {
   return (
-    <button className={'Button-' + props.type} onClick={props.onClick}>
+    <button
+      className={'Button-' + props.type}
+      onClick={props.onClick}
+      data-testid='button-click-test'
+    >
       {props.value}
     </button>
   );
