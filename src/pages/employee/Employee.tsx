@@ -1,10 +1,11 @@
-import React from 'react';
 import './Employee.css';
+import { useSelector } from 'react-redux';
 import Emplist from '../../components/Emplist/Emplist';
 import Emplayout from '../../layout/Emplayout';
-import { data } from '../../constants/data';
 
 const Employee = () => {
+  const employeesData = useSelector((state: any) => state.employees);
+
   return (
     <main>
       <Emplayout type='edit' label='Employees List' id={null}>
@@ -19,7 +20,7 @@ const Employee = () => {
           <div className='emp'>Department</div>
           <div className='emp'>Action</div>
         </div>
-        {data.map((emp) => (
+        {employeesData.map((emp) => (
           <Emplist
             key={emp.id}
             id={emp.id}

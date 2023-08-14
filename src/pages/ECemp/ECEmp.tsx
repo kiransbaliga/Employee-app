@@ -1,7 +1,7 @@
-import { data } from '../../constants/data';
 import CreateInput from '../../components/Create-input/CreateInput';
 import Emplayout from '../../layout/Emplayout';
 import './ECEmp.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Button from '../../components/Button/Button';
 const ECEmp = () => {
   const id = useParams();
   const navigate = useNavigate();
+  const data = useSelector((action: any) => action.employees);
 
   console.log(id);
 
@@ -26,6 +27,31 @@ const ECEmp = () => {
   const [pin, setPin] = id.id ? useState(emp.address.pincode) : useState('');
 
   console.log(emp);
+
+  const dispatch = useDispatch();
+  const handleSubmit = () => {
+    dispatch({
+      type: id.id ? 'EMPLOYEE:EDIT' : 'EMPLOYEE:CREATE',
+      payload: {
+        employee: {
+          id: id.id ? Number(id.id) : 4,
+          name: name || 'suku',
+          email: 'sukunan@gmail.com',
+          joindate: join || '2-2-23',
+          experience: experience || '5',
+          department: dept || '3',
+          role: role || 'UX',
+          status: status || true,
+          address: {
+            line1: line1 || 'line1',
+            line2: line2 || 'line2',
+            pincode: pin || '123455'
+          }
+        }
+      }
+    });
+    navigate('/employee');
+  };
 
   return (
     <main>
@@ -122,13 +148,7 @@ const ECEmp = () => {
             ) : null}
           </div>
           <div className='button-row'>
-            <Button
-              value='Save'
-              type='primary'
-              onClick={() => {
-                navigate('/employee');
-              }}
-            ></Button>
+            <Button value='Save' type='primary' onClick={handleSubmit}></Button>
             <Button
               value='Cancel'
               type='secondary'

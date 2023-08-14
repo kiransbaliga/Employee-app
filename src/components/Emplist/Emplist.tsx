@@ -5,6 +5,7 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
+import { useDispatch } from 'react-redux';
 
 type Empprops = {
   id: number;
@@ -20,6 +21,7 @@ type Empprops = {
 const Emplist: FC<Empprops> = (props) => {
   const navigate = useNavigate();
   const [delbox, setDelbox] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -27,7 +29,13 @@ const Emplist: FC<Empprops> = (props) => {
         <div className='delete-alert'>
           <div className='card-box'>
             <div className='close'>
-              <button onClick={() => setDelbox(false)}>x</button>
+              <button
+                onClick={() => {
+                  setDelbox(false);
+                }}
+              >
+                x
+              </button>
             </div>
             <div className='text'>Are you sure?</div>
             <div className='text-confirm'>Do you really want to delete this employee?</div>
@@ -36,6 +44,12 @@ const Emplist: FC<Empprops> = (props) => {
                 value='confirm'
                 type='primary'
                 onClick={() => {
+                  dispatch({
+                    type: 'EMPLOYEE:DELETE',
+                    payload: {
+                      id: Number(props.id)
+                    }
+                  });
                   setDelbox(false);
                 }}
               ></Button>

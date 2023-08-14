@@ -3,11 +3,12 @@ import './Empdetails.css';
 import Emplayout from '../../layout/Emplayout';
 import Detail from '../../components/Detail/Detail';
 import { useParams } from 'react-router-dom';
-import { data } from '../../constants/data';
+import { useSelector } from 'react-redux';
+
 const Empdetails = () => {
+  const data = useSelector((state: any) => state.employees);
   const { id } = useParams();
   const employee = data.find((e) => Number(id) === e.id);
-
 
   return (
     <main>
