@@ -12,7 +12,9 @@ const CreateInput: FC<Inputprops> = (props) => {
   return (
     <div className='input-parent'>
       <label>{props.label}</label>
-      {props.type === 'text' ? <input value={props.value} onChange={props.onChange} /> : null}
+      {props.type === 'text' ? (
+        <input value={props.value} onChange={props.onChange} placeholder={props.label} />
+      ) : null}
       {props.type === 'select' ? (
         <select value={props.value} onChange={props.onChange}>
           <option value='1'>1</option>

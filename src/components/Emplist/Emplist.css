@@ -13,7 +13,7 @@
 
   /* justify-content: space-betwe; */
 }
-.emplist-main:hover{
+.emplist-main:hover {
   background-color: beige;
 }
 
@@ -30,11 +30,11 @@
   background-color: transparent;
 }
 
-.button-action:hover{
+.button-action:hover {
   cursor: pointer;
 }
 
-.delete-alert{
+.delete-alert {
   z-index: 12;
   position: absolute;
   width: 100vw;
@@ -45,27 +45,50 @@
   align-items: center;
 }
 
-.card-box{
+.card-box {
   width: 350px;
-  height: 200px;
+  height: 180px;
   background-color: white;
   color: black;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0px 3px 6px #00000029;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  gap: 25px;
+  justify-content: center;
   padding: 15px;
 }
-.text{
+.text {
   font-size: 18px;
   text-align: center;
   font-weight: 600;
+  flex: 2;
+}
+.text-confirm {
+  flex: 2;
 }
 
-.buttons{
+.buttons {
   display: flex;
-  gap:20px;
-  width:100%;
+  gap: 20px;
+  width: 75%;
+  flex: 2;
+}
+
+.close {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  width: 100%;
+  font-size: 15px;
+  flex: 1;
+}
+.close > button {
+  font-size: 18px;
+  background-color: white;
+  border: none;
+  outline: none;
+  color: rgba(155, 155, 152, 0.979);
 }

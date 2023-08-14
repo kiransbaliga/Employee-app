@@ -30,21 +30,21 @@
   color: rgb(0, 0, 0);
   font-size: 16px;
   font-weight: 600;
-  border: 1px solid #03aeee;
+  border: 1px solid #757677;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #b0e6fa;
+  box-shadow: 0px 3px 6px #54565762;
   border-radius: 3px;
   opacity: 1;
 }
 .Button-secondary:hover{
   width: 50%;
   height: 40px;
-  color: white;
+  color: black;
   font-size: 16px;
   font-weight: 600;
-  border: 1px solid #03aeee;
-  background: #b5b8b9 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #b0e6fa;
+  border: 1px solid #656768;
+  background: #b5b8b988 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #54565762;
   border-radius: 3px;
   opacity: 1;
 }

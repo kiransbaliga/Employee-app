@@ -26,16 +26,20 @@ const Emplist: FC<Empprops> = (props) => {
       {delbox ? (
         <div className='delete-alert'>
           <div className='card-box'>
-            <div className='text'>Are you sure you want to delete this employee?</div>
+            <div className='close'>
+              <button onClick={() => setDelbox(false)}>x</button>
+            </div>
+            <div className='text'>Are you sure?</div>
+            <div className='text-confirm'>Do you really want to delete this employee?</div>
             <div className='buttons'>
               <Button
                 value='confirm'
-                type='secondary'
+                type='primary'
                 onClick={() => {
                   setDelbox(false);
                 }}
               ></Button>
-              <Button value='cancel' type='primary' onClick={() => setDelbox(false)}></Button>
+              <Button value='cancel' type='secondary' onClick={() => setDelbox(false)}></Button>
             </div>
           </div>
         </div>

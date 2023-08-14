@@ -86,27 +86,29 @@ const ECEmp = () => {
               type='select'
               options={{ active: 'active', inactive: 'inactive' }}
             ></CreateInput>
-            <CreateInput
-              value={line1}
-              onChange={(e) => setLine1(e.target.value)}
-              label='Address'
-              type='text'
-              options={{}}
-            ></CreateInput>
-            <CreateInput
-              value={line2}
-              onChange={(e) => setLine2(e.target.value)}
-              label=''
-              type='text'
-              options={{}}
-            ></CreateInput>
-            <CreateInput
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              label=''
-              type='text'
-              options={{}}
-            ></CreateInput>
+            <div>
+              <CreateInput
+                value={line1}
+                onChange={(e) => setLine1(e.target.value)}
+                label='Address'
+                type='text'
+                options={{}}
+              ></CreateInput>
+              <CreateInput
+                value={line2}
+                onChange={(e) => setLine2(e.target.value)}
+                label=''
+                type='text'
+                options={{}}
+              ></CreateInput>
+              <CreateInput
+                value={pin}
+                onChange={(e) => setPin(e.target.value)}
+                label=''
+                type='text'
+                options={{}}
+              ></CreateInput>
+            </div>
             {id.id ? (
               <CreateInput
                 value={id.id}
