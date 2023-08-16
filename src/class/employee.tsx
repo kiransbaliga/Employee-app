@@ -8,3 +8,5 @@ class Employee {
   experience: number;
   address: string;
 }
+
+export default Employee;

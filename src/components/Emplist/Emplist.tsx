@@ -6,6 +6,7 @@ import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 import { useDispatch } from 'react-redux';
+import { deleteEmployee } from '../../actions/employee-actions';
 
 type Empprops = {
   id: number;
@@ -44,12 +45,11 @@ const Emplist: FC<Empprops> = (props) => {
                 value='confirm'
                 type='primary'
                 onClick={() => {
-                  dispatch({
-                    type: 'EMPLOYEE:DELETE',
-                    payload: {
+                  dispatch(
+                    deleteEmployee({
                       id: Number(props.id)
-                    }
-                  });
+                    })
+                  );
                   setDelbox(false);
                 }}
               ></Button>

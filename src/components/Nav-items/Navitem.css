@@ -11,7 +11,7 @@ nav {
   
     display: flex;
     gap: 20px;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     background-color: #03aeee;
     height: 60px;

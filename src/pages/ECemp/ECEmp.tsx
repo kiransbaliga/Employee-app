@@ -3,9 +3,10 @@ import Emplayout from '../../layout/Emplayout';
 import './ECEmp.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import { addEmployee, editEmployee } from '../../actions/employee-actions';
 
 const ECEmp = () => {
   const id = useParams();
@@ -30,26 +31,41 @@ const ECEmp = () => {
 
   const dispatch = useDispatch();
   const handleSubmit = () => {
-    dispatch({
-      type: id.id ? 'EMPLOYEE:EDIT' : 'EMPLOYEE:CREATE',
-      payload: {
-        employee: {
-          id: id.id ? Number(id.id) : 4,
-          name: name || 'suku',
-          email: 'sukunan@gmail.com',
-          joindate: join || '2-2-23',
-          experience: experience || '5',
-          department: dept || '3',
-          role: role || 'UX',
-          status: status || true,
-          address: {
-            line1: line1 || 'line1',
-            line2: line2 || 'line2',
-            pincode: pin || '123455'
-          }
-        }
-      }
-    });
+    dispatch(
+      id.id
+        ? editEmployee({
+            id: id.id ? Number(id.id) : 4,
+            name: name || 'suku',
+            email: 'sukunan@gmail.com',
+            password: 'hello@123',
+            joindate: join || '2-2-23',
+            experience: experience || '5',
+            department: dept || '3',
+            role: role || 'UX',
+            status: status || true,
+            address: {
+              line1: line1 || 'line1',
+              line2: line2 || 'line2',
+              pincode: pin || '123455'
+            }
+          })
+        : addEmployee({
+            id: id.id ? Number(id.id) : 4,
+            name: name || 'suku',
+            email: 'sukunan@gmail.com',
+            password: 'hello@123',
+            joindate: join || '2-2-23',
+            experience: experience || '5',
+            department: dept || '3',
+            role: role || 'UX',
+            status: status || true,
+            address: {
+              line1: line1 || 'line1',
+              line2: line2 || 'line2',
+              pincode: pin || '123455'
+            }
+          })
+    );
     navigate('/employee');
   };
 

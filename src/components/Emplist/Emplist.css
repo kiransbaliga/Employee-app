@@ -79,8 +79,8 @@
 .close {
   position: relative;
   display: flex;
-  justify-content: end;
-  align-items: end;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 100%;
   font-size: 15px;
   flex: 1;
