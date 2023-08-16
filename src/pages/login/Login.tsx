@@ -1,14 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { useLoginMutation } from './api';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [pass, setPass] = useState('');
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
+  const [login, { data: response, isSuccess }] = useLoginMutation();
+
+  const handlesubmit = () => {
+    console.log(username);
+    console.log(pass);
+    if (pass != '' && username != '') login({ email: username, password: pass });
+    else setShowError(true);
+  };
+
+  useEffect(() => {
+    if (isSuccess && response) {
+      console.log(response);
+
+      localStorage.setItem('authToken', response.data.token);
+      navigate('/employee');
+    }
+  }, [response, isSuccess]);
 
   return (
     <>
@@ -37,16 +55,7 @@ const Login = () => {
             label='password'
             type='password'
           />
-          <Button
-            value='Submit'
-            onClick={() => {
-              console.log(username);
-              console.log(pass);
-              if (pass != '' && username != '') navigate('/employee');
-              else setShowError(true);
-            }}
-            type='primary'
-          />
+          <Button value='Submit' onClick={handlesubmit} type='primary' />
           {showError && <div className='error-msg'> Username or Password is not valid </div>}
         </section>
       </main>

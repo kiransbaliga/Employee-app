@@ -2,9 +2,16 @@ import './Employee.css';
 import { useSelector } from 'react-redux';
 import Emplist from '../../components/Emplist/Emplist';
 import Emplayout from '../../layout/Emplayout';
+import { useGetEmployeeListQuery } from '../api';
+import { useEffect } from 'react';
 
 const Employee = () => {
   const employeesData = useSelector((state: any) => state.employees);
+  const { data: response, isSuccess } = useGetEmployeeListQuery();
+
+  useEffect(() => {
+    if (isSuccess && response) console.log(response);
+  }, [response, isSuccess]);
 
   return (
     <main>
