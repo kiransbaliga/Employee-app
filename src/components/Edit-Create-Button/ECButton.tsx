@@ -10,9 +10,12 @@ type ECButtonProps = {
 const ECButton: FC<ECButtonProps> = (props) => {
   const navigate = useNavigate();
 
+  const role = localStorage.getItem('role');
+  const css = role != 'HR' && role != 'ADMIN' ? 'none' : 'suku';
+
   return (
     <button
-      className='ecbutton'
+      className={'ecbutton ' + css}
       onClick={() => {
         props.type === 'create'
           ? navigate(`/employee/${props.id}/edit`)

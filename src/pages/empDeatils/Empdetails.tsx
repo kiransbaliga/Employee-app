@@ -1,38 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Empdetails.css';
 import Emplayout from '../../layout/Emplayout';
 import Detail from '../../components/Detail/Detail';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useLazyGetEmployeeByIdQuery } from '../api';
 
 const Empdetails = () => {
-  const data = useSelector((state: any) => state.employees);
+  // const data = useSelector((state: any) => state.employees);
   const { id } = useParams();
-  const employee = data.find((e) => Number(id) === e.id);
+  // const response.data = data.find((e) => Number(id) === e.id);
+  const [empData, setEmp] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: '',
+    departmentId: 1,
+    status: true,
+    joindate: '',
+    exprience: 3,
+    address: {
+      line1: '',
+      line2: '',
+      pincode: ''
+    }
+  });
+  const [getEmpById, { data: response }] = useLazyGetEmployeeByIdQuery();
+
+  console.log(empData);
+
+  useEffect(() => {
+    getEmpById(Number(id));
+  }, []);
+
+  useEffect(() => {
+    if (response?.data) setEmp(response.data);
+  }, [response]);
 
   return (
-    <main>
+    <main className='detail-main'>
       <Emplayout type='create' label='Employee Details' id={Number(id)}>
         <div className='emp-detail'>
-          <Detail type='text' val={employee.name} label='Employee Name'></Detail>
-          <Detail type='text' val={employee.joindate} label='Joining Date'></Detail>
-          <Detail type='text' val={employee.experience} label='Experience'></Detail>
-          <Detail type='text' val={employee.role} label='Role'></Detail>
-          <Detail type='status' val={String(employee.status)} label='Stats'></Detail>
-          <Detail type='text' val={employee.email} label='Email'></Detail>
+          <Detail type='text' val={empData.name} label='Employee Name'></Detail>
+          <Detail type='text' val={empData.joindate} label='Joining Date'></Detail>
+          <Detail type='text' val={empData.exprience} label='Experience'></Detail>
+          <Detail type='text' val={empData.role} label='Role'></Detail>
+          <Detail type='status' val={String(empData.status)} label='Stats'></Detail>
+          <Detail type='text' val={empData.email} label='Email'></Detail>
           <Detail
             type='text'
             val={
-              employee.address.line1 +
-              ' ,' +
-              employee.address.line2 +
-              ' ,' +
-              employee.address.pincode
+              empData.address.line1 + ' ,' + empData.address.line2 + ' ,' + empData.address.pincode
             }
             label='Address'
           ></Detail>
-          <Detail type='text' val={employee.id} label='Employee Id'></Detail>
-          <Detail type='text' val={employee.department} label='Department'></Detail>
+          <Detail type='text' val={id} label='Employee Id'></Detail>
+          <Detail type='text' val={empData.departmentId} label='Department'></Detail>
         </div>
       </Emplayout>
     </main>

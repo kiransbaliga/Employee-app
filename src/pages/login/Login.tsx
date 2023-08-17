@@ -24,6 +24,9 @@ const Login = () => {
       console.log(response);
 
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('user_id', response.data.employee.id);
+      localStorage.setItem('role', response.data.employee.role);
+
       navigate('/employee');
     }
   }, [response, isSuccess]);

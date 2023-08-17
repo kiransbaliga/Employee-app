@@ -92,3 +92,9 @@
   outline: none;
   color: rgba(155, 155, 152, 0.979);
 }
+.disable {
+  pointer-events: none;
+}
+.nocursor {
+  cursor: not-allowed;
+}

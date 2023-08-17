@@ -5,8 +5,9 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
-import { useDispatch } from 'react-redux';
-import { deleteEmployee } from '../../actions/employee-actions';
+import { useDeleteEmployeeByIdMutation } from '../../pages/api';
+// import { useDispatch } from 'react-redux';
+// import { deleteEmployee } from '../../actions/employee-actions';
 
 type Empprops = {
   id: number;
@@ -22,7 +23,12 @@ type Empprops = {
 const Emplist: FC<Empprops> = (props) => {
   const navigate = useNavigate();
   const [delbox, setDelbox] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const [deleteEmployee] = useDeleteEmployeeByIdMutation();
+
+  const role = localStorage.getItem('role');
+  const css = role != 'HR' && role != 'ADMIN' ? 'disable' : 'suku';
+  const nocursor = role != 'HR' && role != 'ADMIN' ? 'nocursor' : 'suku';
 
   return (
     <>
@@ -45,12 +51,12 @@ const Emplist: FC<Empprops> = (props) => {
                 value='confirm'
                 type='primary'
                 onClick={() => {
-                  dispatch(
-                    deleteEmployee({
-                      id: Number(props.id)
-                    })
-                  );
+                  // dispatch(
+                  //   deleteEmployee({
+                  //     id: Number(props.id)
+                  deleteEmployee(Number(props.id));
                   setDelbox(false);
+                  navigate('/employee');
                 }}
               ></Button>
               <Button value='cancel' type='secondary' onClick={() => setDelbox(false)}></Button>
@@ -83,11 +89,14 @@ const Emplist: FC<Empprops> = (props) => {
         <div className='emp' onClick={() => navigate(`/employee/${props.id}`)}>
           {props.departent}
         </div>
-        <div className='emp'>
-          <button className='button-action'>
+        <div className={'emp ' + nocursor}>
+          <button className={'button-action ' + css}>
             <FontAwesomeIcon icon={faTrash} size='1x' color='red' onClick={() => setDelbox(true)} />
           </button>
-          <button className='button-action' onClick={() => navigate(`/employee/${props.id}/edit`)}>
+          <button
+            className={'button-action ' + css}
+            onClick={() => navigate(`/employee/${props.id}/edit`)}
+          >
             <FontAwesomeIcon icon={faEdit} size='1x' color='#03AEEE' />
           </button>
         </div>

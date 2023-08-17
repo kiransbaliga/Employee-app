@@ -2,7 +2,7 @@ import Header from './../components/Header/Header';
 import Sidebar from './../components/Sidebar/Sidebar';
 import Subheader from './../components/SubHeader/Subheader';
 import React, { FC } from 'react';
-
+import './Emplayout.css';
 type EmplayoutProps = {
   type: 'create' | 'edit' | 'none';
   label: string;

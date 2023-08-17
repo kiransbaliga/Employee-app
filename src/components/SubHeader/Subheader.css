@@ -1,5 +1,6 @@
 .Subheader {
-  height: 75px;
+  min-height: 60px;
+  height: 60px !important;
   box-shadow: 0px 3px 6px #00000029;
   width: calc(100% - 360px);
   margin-left: 315px;
@@ -10,13 +11,15 @@
   padding: 0 15px;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 75px;
 }
-.heading{
-    font-size: large;
-    font-weight: 700;
+.heading {
+  font-size: large;
+  font-weight: 700;
 }
 
-.items{
+.items {
   display: flex;
-  gap:30px;
+  gap: 30px;
 }

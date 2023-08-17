@@ -1,128 +1,170 @@
 import CreateInput from '../../components/Create-input/CreateInput';
 import Emplayout from '../../layout/Emplayout';
 import './ECEmp.css';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import { addEmployee, editEmployee } from '../../actions/employee-actions';
+// import { addEmployee, editEmployee } from '../../actions/employee-actions';
+import {
+  useCreateEmployeeMutation,
+  useEditEmployeeByIdMutation,
+  useGetdeptsQuery,
+  useGetrolesQuery,
+  useLazyGetEmployeeByIdQuery
+} from '../api';
 
 const ECEmp = () => {
   const id = useParams();
   const navigate = useNavigate();
-  const data = useSelector((action: any) => action.employees);
+  // const data = useSelector((action: any) => action.employees);
 
-  console.log(id);
+  // console.log(id);
 
-  const emp = id.id ? data.find((emp) => emp.id === Number(id.id)) : undefined;
-
-  const [name, setName] = id.id ? useState(String(emp.name)) : useState('');
-  const [join, setJoin] = id.id ? useState(emp.joindate) : useState('');
-  const [experience, setExperience] = id.id ? useState('' + emp.experience) : useState('');
-  const [dept, setDept] = id.id ? useState('' + emp.department) : useState('');
-  const [role, setRole] = id.id ? useState(emp.role) : useState('');
-  const [status, setStatus] = id.id ? useState(String(emp.status)) : useState('');
-  const [line1, setLine1] = id.id ? useState(emp.address.line1) : useState('');
-  const [line2, setLine2] = id.id ? useState(emp.address.line2) : useState('');
-  const [pin, setPin] = id.id ? useState(emp.address.pincode) : useState('');
-
-  console.log(emp);
-
-  const dispatch = useDispatch();
+  const [emp, setEmp] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: '',
+    departmentId: 1,
+    department: 1,
+    experience: 1,
+    status: true,
+    joindate: '',
+    exprience: 3,
+    address: {
+      line1: '',
+      line2: '',
+      pincode: ''
+    }
+  });
+  const [getEmpById, { data: response }] = useLazyGetEmployeeByIdQuery();
+  const [editEmpById] = useEditEmployeeByIdMutation();
+  const [createEmployee] = useCreateEmployeeMutation();
+  const [role, setrole] = useState({});
+  const [dept, setdept] = useState({});
+  const { data: roles, isSuccess: rolesuccess } = useGetrolesQuery('');
+  const { data: depts, isSuccess: depSuccess } = useGetdeptsQuery('');
+  // const dispatch = useDispatch();
   const handleSubmit = () => {
-    dispatch(
-      id.id
-        ? editEmployee({
-            id: id.id ? Number(id.id) : 4,
-            name: name || 'suku',
-            email: 'sukunan@gmail.com',
-            password: 'hello@123',
-            joindate: join || '2-2-23',
-            experience: experience || '5',
-            department: dept || '3',
-            role: role || 'UX',
-            status: status || true,
-            address: {
-              line1: line1 || 'line1',
-              line2: line2 || 'line2',
-              pincode: pin || '123455'
-            }
-          })
-        : addEmployee({
-            id: id.id ? Number(id.id) : 4,
-            name: name || 'suku',
-            email: 'sukunan@gmail.com',
-            password: 'hello@123',
-            joindate: join || '2-2-23',
-            experience: experience || '5',
-            department: dept || '3',
-            role: role || 'UX',
-            status: status || true,
-            address: {
-              line1: line1 || 'line1',
-              line2: line2 || 'line2',
-              pincode: pin || '123455'
-            }
-          })
-    );
+    // editEmpById({Number(id.id)});
+    if (id.id) editEmpById({ id: id.id, ...emp });
+    else createEmployee({ ...emp, password: 'hello@123' });
     navigate('/employee');
   };
 
+  useEffect(() => {
+    if (id.id) getEmpById(Number(id.id));
+  }, []);
+
+  useEffect(() => {
+    if (response?.data)
+      setEmp({
+        ...response.data,
+        experience: response.data.exprience,
+        department: response.data.departmentId
+      });
+  }, [response]);
+
+  useEffect(() => {
+    const k = {};
+
+    if (roles && rolesuccess) {
+      roles.data.map((key) => {
+        k[key] = key;
+      });
+      setrole(k);
+    }
+  }, [roles, rolesuccess]);
+
+  useEffect(() => {
+    const k = {};
+
+    if (depts && depSuccess) {
+      depts.data.map((item) => {
+        k[item.name] = item.id;
+      });
+      setdept(k);
+    }
+  }, [depts, depSuccess]);
+  // console.log(emp);
+  console.log(dept);
+  console.log(role);
+
   return (
-    <main>
+    <main className='ecemp-main'>
       <Emplayout type='none' label={!id.id ? 'Create Employee' : 'Edit Employee'} id={Number(id)}>
         <div className='form-layout'>
           <div className='edit-create'>
             <CreateInput
-              value={name}
+              value={emp.name}
               onChange={(e) => {
-                setName(e.target.value);
+                // emp.name = e.target.value;
+                setEmp({ ...emp, name: e.target.value });
               }}
               label='Employee Name'
               type='text'
               options={{}}
             ></CreateInput>
             <CreateInput
-              value={join}
+              value={emp.email}
               onChange={(e) => {
-                setJoin(e.target.value);
+                // emp.name = e.target.value;
+                setEmp({ ...emp, email: e.target.value });
+              }}
+              label='Employee email'
+              type='text'
+              options={{}}
+            ></CreateInput>
+            <CreateInput
+              value={emp.joindate}
+              onChange={(e) => {
+                // emp.joindate = e.target.value;
+                setEmp({ ...emp, joindate: e.target.value });
               }}
               label='Joining Date'
               type='text'
               options={{}}
             ></CreateInput>
             <CreateInput
-              value={experience}
+              value={String(emp.experience)}
               onChange={(e) => {
-                setExperience(e.target.value);
+                // setExperience(e.target.value);
+                // emp.exprience = e.target.value;
+                setEmp({ ...emp, experience: Number(e.target.value) });
               }}
               label='Experience'
               type='text'
               options={{}}
             ></CreateInput>
             <CreateInput
-              value={dept}
+              value={String(emp.department)}
               onChange={(e) => {
-                setDept(e.target.value);
+                // emp.departmentId = e.target.value;
+                setEmp({ ...emp, department: Number(e.target.value) });
               }}
               label='Department'
               type='select'
-              options={{ ui: 1, develop: 2, hr: 3 }}
+              options={dept}
             ></CreateInput>
             <CreateInput
-              value={role}
+              value={emp.role}
               onChange={(e) => {
-                setRole(e.target.value);
+                // setRole(e.target.value);
+                // emp.role = e.target.value;
+                setEmp({ ...emp, role: e.target.value });
               }}
               label='Role'
               type='select'
-              options={{ ui: 'ui', developer: 'developer' }}
+              options={role}
             ></CreateInput>
             <CreateInput
-              value={status}
+              value={'' + emp.status}
               onChange={(e) => {
-                setStatus(e.target.value);
+                // setStatus(e.target.value);
+                // emp.status = e.target.value;//
+                setEmp({ ...emp, status: e.target.value });
               }}
               label='Status'
               type='select'
@@ -130,22 +172,30 @@ const ECEmp = () => {
             ></CreateInput>
             <div>
               <CreateInput
-                value={line1}
-                onChange={(e) => setLine1(e.target.value)}
+                value={emp.address.line1}
+                onChange={(e) => {
+                  // emp.address.line1 = e.target.value;
+                  setEmp({ ...emp, address: { ...emp.address, line1: e.target.value } });
+                }}
                 label='Address'
                 type='text'
                 options={{}}
               ></CreateInput>
               <CreateInput
-                value={line2}
-                onChange={(e) => setLine2(e.target.value)}
+                value={emp.address.line2}
+                onChange={(e) => {
+                  // emp.address.line2 = e.target.value;
+                  setEmp({ ...emp, address: { ...emp.address, line2: e.target.value } });
+                }}
                 label=''
                 type='text'
                 options={{}}
               ></CreateInput>
               <CreateInput
-                value={pin}
-                onChange={(e) => setPin(e.target.value)}
+                value={emp.address.pincode}
+                onChange={(e) => {
+                  setEmp({ ...emp, address: { ...emp.address, pincode: e.target.value } });
+                }}
                 label=''
                 type='text'
                 options={{}}

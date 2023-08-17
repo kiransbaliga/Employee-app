@@ -3,7 +3,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3001',
-    credentials: 'include',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('authToken');
 
@@ -16,7 +15,7 @@ const baseApi = createApi({
   refetchOnMountOrArgChange: true,
   refetchOnReconnect: true,
   endpoints: () => ({}),
-  tagTypes: []
+  tagTypes: ['EMP']
 });
 
 export default baseApi;

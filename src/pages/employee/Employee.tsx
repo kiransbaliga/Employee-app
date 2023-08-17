@@ -1,20 +1,20 @@
 import './Employee.css';
-import { useSelector } from 'react-redux';
 import Emplist from '../../components/Emplist/Emplist';
 import Emplayout from '../../layout/Emplayout';
 import { useGetEmployeeListQuery } from '../api';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Employee = () => {
-  const employeesData = useSelector((state: any) => state.employees);
-  const { data: response, isSuccess } = useGetEmployeeListQuery();
+  const [employeesData, setEmployeesData] = useState([]);
+  const { data: response, isSuccess } = useGetEmployeeListQuery('');
 
   useEffect(() => {
-    if (isSuccess && response) console.log(response);
+    if (isSuccess && response) setEmployeesData(response.data);
+    console.log(employeesData);
   }, [response, isSuccess]);
 
   return (
-    <main>
+    <main className='employee-main'>
       <Emplayout type='edit' label='Employees List' id={null}>
         <div className='emp-main'>
           <div className='emp'>Emplyee Name</div>
@@ -34,10 +34,10 @@ const Employee = () => {
             name={emp.name}
             email={emp.email}
             role={emp.role}
-            departent={emp.department}
+            departent={emp.departmentId || 1}
             status={'' + emp.status}
             joindate={emp.joindate}
-            experience={emp.experience}
+            experience={emp.exprience}
             address={emp.address.line1 + ' ,' + emp.address.line2 + ' ,' + emp.address.pincode}
           ></Emplist>
         ))}

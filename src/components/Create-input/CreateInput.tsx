@@ -17,8 +17,11 @@ const CreateInput: FC<Inputprops> = (props) => {
       ) : null}
       {props.type === 'select' ? (
         <select value={props.value} onChange={props.onChange}>
-          <option value='1'>1</option>
-          <option value='2'>2</option>
+          {Object.entries(props.options).map(([key, value]) => (
+            <option value={value} key={key}>
+              {key}
+            </option>
+          ))}
         </select>
       ) : null}
       {props.type === 'address' ? (
