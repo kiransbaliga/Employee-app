@@ -9,7 +9,7 @@ const Status: FC<StatusProps> = (props) => {
   };
 
   return (
-    <div className='status' style={styles}>
+    <div className='status' style={styles} data-testid='status-tests'>
       {props.isActive === 'true' ? 'Active' : 'Inactive'}
     </div>
   );

@@ -10,8 +10,10 @@ type DetailProps = {
 const Detail: FC<DetailProps> = (props) => {
   return (
     <div className='detail'>
-      <label className='detail-label'>{props.label}</label>
-      <div className='emp-data'>
+      <label className='detail-label' data-testid='detail-test'>
+        {props.label}
+      </label>
+      <div className='emp-data' data-testid='text-test'>
         {props.type === 'status' ? <Status isActive='true' /> : props.val}
       </div>
     </div>

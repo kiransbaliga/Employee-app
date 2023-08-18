@@ -12,7 +12,7 @@ export const Navitem: FC<Navprops> = (props) => {
     <nav onClick={() => navigate('/employee')}>
       <a>
         <div className='icon'>
-          <img src={props.src} alt='employess icon' width='20px' />
+          <img src={props.src} alt='employess icon' width='20px' data-testid='nav-test' />
         </div>
         {props.text}
       </a>

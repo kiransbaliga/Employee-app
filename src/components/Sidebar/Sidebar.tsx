@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <aside className='sidebar'>
       <div className='logo-sidebar'>
-        <img src='/assets/img/kv-logo.png' alt='Keyvalue Logo' />
+        <img src='/assets/img/kv-logo.png' alt='Keyvalue Logo' data-testid='logo-test' />
       </div>
       <Navitem src='/assets/icons/employees.svg' text='Employee List' />
     </aside>
