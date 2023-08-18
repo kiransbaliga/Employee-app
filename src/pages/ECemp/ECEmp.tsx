@@ -1,12 +1,9 @@
 import CreateInput from '../../components/Create-input/CreateInput';
 import Emplayout from '../../layout/Emplayout';
 import './ECEmp.css';
-// import { useDispatch, useSelector } from 'react-redux';
-
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-// import { addEmployee, editEmployee } from '../../actions/employee-actions';
 import {
   useCreateEmployeeMutation,
   useEditEmployeeByIdMutation,
@@ -18,9 +15,6 @@ import {
 const ECEmp = () => {
   const id = useParams();
   const navigate = useNavigate();
-  // const data = useSelector((action: any) => action.employees);
-
-  // console.log(id);
 
   const [emp, setEmp] = useState({
     name: '',
@@ -46,9 +40,8 @@ const ECEmp = () => {
   const [dept, setdept] = useState({});
   const { data: roles, isSuccess: rolesuccess } = useGetrolesQuery('');
   const { data: depts, isSuccess: depSuccess } = useGetdeptsQuery('');
-  // const dispatch = useDispatch();
+
   const handleSubmit = () => {
-    // editEmpById({Number(id.id)});
     if (id.id) editEmpById({ id: id.id, ...emp });
     else createEmployee({ ...emp, password: 'hello@123' });
     navigate('/employee');
@@ -88,7 +81,7 @@ const ECEmp = () => {
       setdept(k);
     }
   }, [depts, depSuccess]);
-  // console.log(emp);
+
   console.log(dept);
   console.log(role);
 
@@ -100,7 +93,6 @@ const ECEmp = () => {
             <CreateInput
               value={emp.name}
               onChange={(e) => {
-                // emp.name = e.target.value;
                 setEmp({ ...emp, name: e.target.value });
               }}
               label='Employee Name'
@@ -110,7 +102,6 @@ const ECEmp = () => {
             <CreateInput
               value={emp.email}
               onChange={(e) => {
-                // emp.name = e.target.value;
                 setEmp({ ...emp, email: e.target.value });
               }}
               label='Employee email'
@@ -120,7 +111,6 @@ const ECEmp = () => {
             <CreateInput
               value={emp.joindate}
               onChange={(e) => {
-                // emp.joindate = e.target.value;
                 setEmp({ ...emp, joindate: e.target.value });
               }}
               label='Joining Date'
@@ -130,8 +120,6 @@ const ECEmp = () => {
             <CreateInput
               value={String(emp.experience)}
               onChange={(e) => {
-                // setExperience(e.target.value);
-                // emp.exprience = e.target.value;
                 setEmp({ ...emp, experience: Number(e.target.value) });
               }}
               label='Experience'
@@ -141,7 +129,6 @@ const ECEmp = () => {
             <CreateInput
               value={String(emp.department)}
               onChange={(e) => {
-                // emp.departmentId = e.target.value;
                 setEmp({ ...emp, department: Number(e.target.value) });
               }}
               label='Department'
@@ -151,8 +138,6 @@ const ECEmp = () => {
             <CreateInput
               value={emp.role}
               onChange={(e) => {
-                // setRole(e.target.value);
-                // emp.role = e.target.value;
                 setEmp({ ...emp, role: e.target.value });
               }}
               label='Role'
@@ -162,8 +147,6 @@ const ECEmp = () => {
             <CreateInput
               value={'' + emp.status}
               onChange={(e) => {
-                // setStatus(e.target.value);
-                // emp.status = e.target.value;//
                 setEmp({ ...emp, status: e.target.value });
               }}
               label='Status'
@@ -174,7 +157,6 @@ const ECEmp = () => {
               <CreateInput
                 value={emp.address.line1}
                 onChange={(e) => {
-                  // emp.address.line1 = e.target.value;
                   setEmp({ ...emp, address: { ...emp.address, line1: e.target.value } });
                 }}
                 label='Address'
@@ -184,7 +166,6 @@ const ECEmp = () => {
               <CreateInput
                 value={emp.address.line2}
                 onChange={(e) => {
-                  // emp.address.line2 = e.target.value;
                   setEmp({ ...emp, address: { ...emp.address, line2: e.target.value } });
                 }}
                 label=''

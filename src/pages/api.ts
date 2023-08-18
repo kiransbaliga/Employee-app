@@ -1,21 +1,5 @@
 import baseApi from '../service';
 
-// interface bodyCreateEdit {
-//   name: string;
-//   email: string;
-//   password: string;
-//   role: string;
-//   department: number;
-//   status: boolean;
-//   joindate: string;
-//   experience: number;
-//   address: {
-//     line1: string;
-//     line2: string;
-//     pincode: string;
-//   };
-// }
-
 export const employeeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getEmployeeList: builder.query({

@@ -21,11 +21,9 @@
 
   position: sticky;
   top: 155px;
-  /* justify-content: space-evenly; */
 }
 .emp {
   width: calc(100% / 9);
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;

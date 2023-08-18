@@ -69,27 +69,6 @@ export type EmployeeType = {
   };
 };
 
-// interface createinterface {
-//   type: 'EMPLOYEE:CREATE';
-//   payload: {
-//     employee: EmployeeType;
-//   };
-// }
-
-// interface editinterface {
-//   type: 'EMPLOYEE:EDIT';
-//   payload: {
-//     employee: EmployeeType;
-//   };
-// }
-
-// interface deleteinterface {
-//   type: 'EMPLOYEE:DELETE';
-//   payload: {
-//     id: number | string;
-//   };
-// }
-
 // type Action = createinterface | editinterface | deleteinterface;
 const employeeReducer = createReducer(initialState, (builder) => {
   builder.addCase(addEmployee, (state, action) => {
@@ -111,37 +90,5 @@ const employeeReducer = createReducer(initialState, (builder) => {
     return newstate;
   });
 });
-
-// const employeeReducer = (state = initialState, action) => {
-//   console.log(action);
-//   switch (action.type) {
-//     case 'EMPLOYEE:CREATE': {
-//       const newstate = [...state, action.payload.employee];
-
-//       return newstate;
-//     }
-//     case 'EMPLOYEE:EDIT': {
-//       console.log('hello' + action.payload.employee);
-
-// const newstate = [...state].filter(
-//   (item) => String(item.id) != String(action.payload.employee.id)
-// );
-
-// console.log('hi' + newstate);
-// const fin = [...newstate, action.payload.employee];
-
-// return fin;
-//     }
-//     case 'EMPLOYEE:DELETE': {
-//       const newstate = [...state].filter((item) => String(item.id) != String(action.payload.id));
-
-//       const fin = [...newstate];
-
-//       return fin;
-//     }
-//     default:
-//       return state;
-//   }
-// };
 
 export default employeeReducer;
