@@ -3,13 +3,10 @@ import './Empdetails.css';
 import Emplayout from '../../layout/Emplayout';
 import Detail from '../../components/Detail/Detail';
 import { useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 import { useLazyGetEmployeeByIdQuery } from '../api';
 
 const Empdetails = () => {
-  // const data = useSelector((state: any) => state.employees);
   const { id } = useParams();
-  // const response.data = data.find((e) => Number(id) === e.id);
   const [empData, setEmp] = useState({
     name: '',
     email: '',

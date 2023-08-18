@@ -24,8 +24,6 @@ const ECButton: FC<ECButtonProps> = (props) => {
     >
       <div className={'button-parent ' + props.type}>
         <div className='icon-subheader'>
-          {/* <img src='assets/icons/+.svg' alt='' />
-           */}
           {props.type === 'edit' ? (
             <FontAwesomeIcon icon={faAdd} size='1x' color='white' />
           ) : (
